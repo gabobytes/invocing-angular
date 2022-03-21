@@ -1,4 +1,4 @@
-import { ProductApiService } from './Infrastructure/driven-adapter/product-api/product-api-service/product-api-service.';
+import { ProductApiService } from './Infrastructure/driven-adapter/product-api/product-api-service';
 import { Component, OnInit, } from '@angular/core';
 
 @Component({

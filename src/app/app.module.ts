@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ProductApiService } from './Infrastructure/driven-adapter/product-api/product-api-service/product-api-service.';
+import { ProductApiService } from './Infrastructure/driven-adapter/product-api/product-api-service';
 import { ProductComponent } from './UI/view-models/product/product.component';
 
 

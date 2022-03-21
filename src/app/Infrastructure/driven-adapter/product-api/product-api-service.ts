@@ -14,8 +14,7 @@ import { delay } from 'rxjs';
 
 export class ProductApiService extends ProductGateway {
 
-  private _url = environment.urlProducts;
-  
+  private _url = environment.urlProducts;  
   constructor (private http: HttpClient) {super();}
 
   getProducts(): Observable<Product[]> {
@@ -23,7 +22,7 @@ export class ProductApiService extends ProductGateway {
   }
 
   getProduct(id: String): Observable<Product> {
-    return this.http.get<Product>(this._url+id).pipe(delay(2000));
+    return this.http.get<Product>(this._url+id);
   }
 
   insertProduct(_product: Product): Observable<void> {

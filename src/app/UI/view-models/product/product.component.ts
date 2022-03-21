@@ -1,5 +1,5 @@
-import { ProductUseCases } from './../../../Domain/usecase/product-use-case';
 import { Component, OnInit } from '@angular/core';
+import { ProductUseCases } from './../../../Domain/usecase/product-use-case';
 //import { throws } from 'assert';
 
 @Component({
@@ -14,12 +14,15 @@ export class ProductComponent implements OnInit {
   response$;
   datos;
 
+  
 
   ngOnInit(): void {
-    this.response$ = this._getProductUseCase.getProducts();
+    this.response$ = this._getProductUseCase.getProduct('5');
     this.response$.subscribe(
       (data) =>{
-        this.datos =data;
+        this.datos = data.data;
+        
+        console.log(data.data);        
       }
     );
   }

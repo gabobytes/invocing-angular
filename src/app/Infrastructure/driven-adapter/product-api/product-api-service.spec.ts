@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProductApiService } from './product-api-service.';
+import { ProductApiService } from './product-api-service';
 
 describe('ProductApiService', () => {
   let component: ProductApiService;
