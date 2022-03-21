@@ -1,6 +1,6 @@
 import { ProductUseCases } from './../../../Domain/usecase/product-use-case';
 import { Component, OnInit } from '@angular/core';
-import { throws } from 'assert';
+//import { throws } from 'assert';
 
 @Component({
   providers: [],
@@ -12,14 +12,14 @@ export class ProductComponent implements OnInit {
 
   constructor(private _getProductUseCase: ProductUseCases) { }
   response$;
-  datos$;
+  datos;
 
 
   ngOnInit(): void {
     this.response$ = this._getProductUseCase.getProducts();
     this.response$.subscribe(
       (data) =>{
-        this.datos$ =data;
+        this.datos =data;
       }
     );
   }

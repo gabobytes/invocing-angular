@@ -1,3 +1,4 @@
+import { ProductGateway } from 'src/app/Domain/Models/Product/Gateway/product-gateway';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -8,15 +9,14 @@ import { ProductComponent } from './UI/view-models/product/product.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    ProductApiService,
+    AppComponent,    
     ProductComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [{provide: ProductGateway, useClass:ProductApiService }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
