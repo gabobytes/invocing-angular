@@ -1,4 +1,7 @@
+import { ProductUseCases } from './../../../../Domain/usecase/Product/product-use-case';
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-product',
@@ -7,9 +10,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddProductComponent implements OnInit {
 
-  constructor() { }
+  formProduct:FormGroup;
+
+  constructor(private _getProductUseCase:ProductUseCases,
+     public _formProduct:FormBuilder,
+     private _routering:Router) 
+     
+     { 
+    this.formProduct = this._formProduct.group({
+      productname:[''],
+      value:['']
+    });
+
+  }
+  response$;
+
 
   ngOnInit(): void {
+  }
+
+  saveNew():any{
+   this.response$ = this._getProductUseCase.saveNew(this.formProduct.value).subscribe(
+     res=>{
+      this._routering.navigateByUrl('list-product');
+     }
+   );
+   
+   //this._getProductUseCase.getProducts();
+   
   }
 
 }

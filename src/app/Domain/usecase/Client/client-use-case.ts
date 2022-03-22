@@ -18,4 +18,10 @@ export class ClientUseCases{
     getClientById(id:String ) : Observable<Client>{
         return this._clientGateway.getById(id);
     }
+
+    saveNew(_client: Client): Observable<any> {
+        return this._clientGateway.saveNew(_client);
+     }    
+
+    
 }

@@ -9,8 +9,8 @@ import { Component, OnInit } from '@angular/core';
 export class ListProductComponent implements OnInit {
 
   constructor(private _getProductUseCase: ProductUseCases) { }
-response$;
-products;
+  response$;
+  products;
 
 
   ngOnInit(): void {
@@ -18,9 +18,16 @@ products;
     this.response$.subscribe(
       (resp) =>{
         this.products = resp.data;
-      }
+      });
+  }  
 
-    )
-  }
+  deleteProduct(id:any,iControl:any)  {
 
+    if(window.confirm("¿Eliminar Registro?"))
+    {
+      this.response$ = this._getProductUseCase.deleteProduct(id).subscribe((res)=> {
+        this.products.splice(iControl,1);  
+      } );
+    }
+  }  
 }

@@ -13,7 +13,8 @@ import { delay } from 'rxjs';
 
 
 export class ProductApiService extends ProductGateway {
-
+  
+  
   private _url = environment.baseUrl+environment.urlProducts;  
   constructor (private http: HttpClient) {super();}
 
@@ -25,13 +26,16 @@ export class ProductApiService extends ProductGateway {
     return this.http.get<Product>(this._url+id);
   }
 
-  insertProduct(_product: Product): Observable<void> {
-    throw new Error('Method not implemented.');
+  saveNew(_product: Product): Observable<any> {
+    return this.http.post(this._url,_product);
   }
 
-  
-
-  ngOnInit(): void {
+  update(_product: Product, id:String): Observable<any> {
+    return this.http.put(this._url+id,_product);
   }
 
-}
+
+  delete(id: String): Observable<any> {
+    return this.http.delete(this._url+id)
+  }
+ }

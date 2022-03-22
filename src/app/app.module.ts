@@ -12,19 +12,24 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ListProductComponent } from './UI/view-models/product/list-product/list-product.component';
 import { AddProductComponent } from './UI/view-models/product/add-product/add-product.component';
 import { EditProductComponent } from './UI/view-models/product/edit-product/edit-product.component';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ListClientComponent } from './UI/view-models/client/list-client/list-client.component';
+import { AddClientComponent } from './UI/view-models/client/add-client/add-client.component';
+import { EditClientComponent } from './UI/view-models/client/edit-client/edit-client.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,    
-    ProductComponent, ListProductComponent, AddProductComponent, EditProductComponent
+    ProductComponent, ListProductComponent, AddProductComponent, EditProductComponent, ListClientComponent, AddClientComponent, EditClientComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [{provide: ProductGateway, useClass:ProductApiService },
     {provide:ClientGateway,useClass:ClientApiService}
