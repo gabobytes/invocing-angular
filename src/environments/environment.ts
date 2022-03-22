@@ -4,7 +4,9 @@
 
 export const environment = {
   production: false,
-  urlProducts:'http://localhost:1451/Api/product/',
+  baseUrl:'http://localhost:1451/api/',
+  urlProducts: 'product/',
+  urlClients: 'client'
 };
 
 /*

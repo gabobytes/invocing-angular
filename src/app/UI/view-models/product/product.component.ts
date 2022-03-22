@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductUseCases } from './../../../Domain/usecase/product-use-case';
+import { ProductUseCases } from '../../../Domain/usecase/Product/product-use-case';
 //import { throws } from 'assert';
 
 @Component({
@@ -13,6 +13,7 @@ export class ProductComponent implements OnInit {
   constructor(private _getProductUseCase: ProductUseCases) { }
   response$;
   datos;
+  
 
   
 

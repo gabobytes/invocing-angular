@@ -8,7 +8,7 @@ import { Component, OnInit, } from '@angular/core';
 })
 export class AppComponent implements OnInit {
   response$ ;
-  datos;
+  products;
   title = 'invoicing';
 
   constructor(private _productApiService : ProductApiService) {

@@ -14,10 +14,10 @@ import { delay } from 'rxjs';
 
 export class ProductApiService extends ProductGateway {
 
-  private _url = environment.urlProducts;  
+  private _url = environment.baseUrl+environment.urlProducts;  
   constructor (private http: HttpClient) {super();}
 
-  getProducts(): Observable<Product[]> {
+  getProducts(): Observable<Product[]> {    
     return this.http.get<Array<Product>>(this._url);
   }
 
