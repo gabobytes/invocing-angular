@@ -25,5 +25,14 @@ export class ClientApiService  extends ClientGateway{
   saveNew(_client: Client): Observable<any> {
      return this.http.post(this._url, _client);
   }
+
+  update(id: String,_client: Client, ): Observable<any> {
+    return this.http.put(this._url+id,_client);
+  }
+  delete(id: string): Observable<any> {
+    return this.http.delete(this._url+id);
+  }  
+
+  
   
 }

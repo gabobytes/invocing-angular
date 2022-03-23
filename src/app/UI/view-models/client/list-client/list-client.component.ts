@@ -1,3 +1,4 @@
+import { ClientUseCases } from './../../../../Domain/usecase/Client/client-use-case';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListClientComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _getClientUseCase:ClientUseCases) { }
+  response$;
+  Clients;
 
   ngOnInit(): void {
+  this.response$ = this._getClientUseCase.getAllClients();
+  this.response$.subscribe(
+    (resp) =>{
+      this.Clients = resp.data;
+    }
+  )
+  }
+
+  deleteClient(id:any,iControl:any){
+    if(window.confirm("¿Eliminar registro?")){
+      console.log(id);
+      this.response$ = this._getClientUseCase.delete(id).subscribe((res)=>
+      {
+        this.Clients.splice(iControl,1);
+      });
+    }
   }
 
 }

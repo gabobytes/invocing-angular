@@ -1,3 +1,6 @@
+import { Router } from '@angular/router';
+import { ClientUseCases } from './../../../../Domain/usecase/Client/client-use-case';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +10,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddClientComponent implements OnInit {
 
-  constructor() { }
+  formClient:FormGroup;
+  response$;
+
+  constructor(private _getClientUseCase:ClientUseCases,public _formClient:FormBuilder, private _routering:Router) {
+    this.formClient = this._formClient.group({
+      document:[''],
+      firstname:[''],
+      lastname:[''],
+      phone:['']
+    });
+
+   }
 
   ngOnInit(): void {
   }
-
+  saveNew():any{
+    this.response$ = this._getClientUseCase.saveNew(this.formClient.value).subscribe(
+      res=>{
+        this._routering.navigateByUrl('list-client');
+      }
+    )
+  }
 }

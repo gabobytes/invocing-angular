@@ -33,8 +33,7 @@ export class ProductApiService extends ProductGateway {
   update(_product: Product, id:String): Observable<any> {
     return this.http.put(this._url+id,_product);
   }
-
-
+  
   delete(id: String): Observable<any> {
     return this.http.delete(this._url+id)
   }

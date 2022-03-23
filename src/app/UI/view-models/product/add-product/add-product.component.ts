@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class AddProductComponent implements OnInit {
 
   formProduct:FormGroup;
+  response$;
 
   constructor(private _getProductUseCase:ProductUseCases,
      public _formProduct:FormBuilder,
@@ -22,8 +23,7 @@ export class AddProductComponent implements OnInit {
       value:['']
     });
 
-  }
-  response$;
+  } 
 
 
   ngOnInit(): void {
@@ -35,9 +35,5 @@ export class AddProductComponent implements OnInit {
       this._routering.navigateByUrl('list-product');
      }
    );
-   
-   //this._getProductUseCase.getProducts();
-   
   }
-
 }

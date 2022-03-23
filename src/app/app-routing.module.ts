@@ -1,3 +1,5 @@
+import { EditClientComponent } from './UI/view-models/client/edit-client/edit-client.component';
+import { AddClientComponent } from './UI/view-models/client/add-client/add-client.component';
 import { ListClientComponent } from './UI/view-models/client/list-client/list-client.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -11,7 +13,9 @@ const routes: Routes = [
   {path:'list-product', component:ListProductComponent},
   {path:'add-product', component:AddProductComponent},
   {path:'edit-product/:id', component:EditProductComponent},
-  {path:'list-client', component:ListClientComponent}
+  {path:'list-client', component:ListClientComponent},
+  {path:'add-client',component:AddClientComponent},
+  {path:'edit-client/:id',component:EditClientComponent}
 ];
 
 @NgModule({
