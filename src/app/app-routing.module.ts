@@ -1,3 +1,4 @@
+import { InvoiceHeaderComponent } from './UI/view-models/invoice/invoice-header/invoice-header.component';
 import { EditClientComponent } from './UI/view-models/client/edit-client/edit-client.component';
 import { AddClientComponent } from './UI/view-models/client/add-client/add-client.component';
 import { ListClientComponent } from './UI/view-models/client/list-client/list-client.component';
@@ -15,7 +16,8 @@ const routes: Routes = [
   {path:'edit-product/:id', component:EditProductComponent},
   {path:'list-client', component:ListClientComponent},
   {path:'add-client',component:AddClientComponent},
-  {path:'edit-client/:id',component:EditClientComponent}
+  {path:'edit-client/:id',component:EditClientComponent},
+  {path: 'add-invoice',component:InvoiceHeaderComponent}
 ];
 
 @NgModule({

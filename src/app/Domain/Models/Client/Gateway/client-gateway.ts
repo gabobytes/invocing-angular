@@ -7,4 +7,5 @@ export abstract class ClientGateway {
     abstract saveNew(_client:Client):Observable<any>;   
     abstract update(id:String,_client:Client):Observable<any>;
     abstract delete(id:string):Observable<any>;
+    
 }

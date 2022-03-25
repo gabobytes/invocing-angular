@@ -17,7 +17,7 @@ export class ListProductComponent implements OnInit {
     this.response$ = this._getProductUseCase.getProducts();
     this.response$.subscribe(
       (resp) =>{
-        this.products = resp.data;
+        this.products = resp;
       });
   }  
 

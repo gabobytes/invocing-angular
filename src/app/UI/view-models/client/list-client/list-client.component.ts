@@ -16,7 +16,7 @@ export class ListClientComponent implements OnInit {
   this.response$ = this._getClientUseCase.getAllClients();
   this.response$.subscribe(
     (resp) =>{
-      this.Clients = resp.data;
+      this.Clients = resp;
     }
   )
   }

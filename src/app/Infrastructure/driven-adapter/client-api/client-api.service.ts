@@ -1,3 +1,4 @@
+import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
 import { HttpClient } from '@angular/common/http';
@@ -10,6 +11,8 @@ import { ClientGateway } from 'src/app/Domain/Models/Client/Gateway/client-gatew
   providedIn: 'root'
 })
 export class ClientApiService  extends ClientGateway{
+
+
 
   constructor(private http: HttpClient) {super(); }
 
@@ -33,6 +36,12 @@ export class ClientApiService  extends ClientGateway{
     return this.http.delete(this._url+id);
   }  
 
+  /*getDocumentName() {
+   return this.http.get(this._url) 
+   .pipe(  map((response:[]) => response.map(item => item['firstname']))
+   )
+    ;;
   
+  } */
   
 }

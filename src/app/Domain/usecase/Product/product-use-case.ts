@@ -1,5 +1,5 @@
 import { Product } from '../../Models/Product/product';
-import { Observable } from 'rxjs';
+import { catchError, map, Observable, tap } from 'rxjs';
 import { Injectable } from "@angular/core";
 import { ProductGateway } from "../../Models/Product/Gateway/product-gateway";
 
@@ -13,7 +13,18 @@ export class ProductUseCases{
         return this._productGateway.getProduct(id);
     }
     getProducts(): Observable <Array<Product>>{
-        return this._productGateway.getProducts();
+        return this._productGateway.getProducts()
+        .pipe(
+            map((dataRaw: any) => {   
+                return dataRaw.data;
+            }
+            )
+            , tap((respOk: any) => {
+            })
+            , catchError((err: any) => {
+                throw Error(err);
+            })
+        );
     }
 
     saveNew(_product: Product): Observable<any> {

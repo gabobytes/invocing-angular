@@ -1,3 +1,4 @@
+import { catchError, map, tap } from 'rxjs/operators';
 import { observable, Observable } from 'rxjs';
 import { Injectable } from "@angular/core";
 import { ClientGateway } from "../../Models/Client/Gateway/client-gateway";
@@ -10,9 +11,20 @@ import { Client } from '../../Models/Client/client';
 export class ClientUseCases{
     
     constructor(private _clientGateway: ClientGateway) { }
-
-    getAllClients() : Observable<Array<Client>>{
-        return this._clientGateway.getAll();
+    returnString:string[]  = [];
+    getAllClients() : Observable<Array<Client>>{        
+        return this._clientGateway.getAll()
+        .pipe(
+            map((dataRaw: any) => {   
+                return dataRaw.data;
+            }
+            )
+            , tap((respOk: any) => {
+            })
+            , catchError((err: any) => {
+                throw Error(err);
+            })
+        );
     }
 
     getClientById(id:String ) : Observable<Client>{
@@ -31,5 +43,7 @@ export class ClientUseCases{
          return this._clientGateway.delete(id);
      }
 
-    
+     /*getDocumentName(){
+         return this._clientGateway.getDocumentName();
+     } */   
 }
