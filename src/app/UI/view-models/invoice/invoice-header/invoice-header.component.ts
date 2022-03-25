@@ -19,6 +19,7 @@ export class InvoiceHeaderComponent implements OnInit {
   productList: any[] = [];
   formGroup:FormGroup;
   dtoInvoiceRegister = new InvoiceRegister();
+  objClientLastSelected = {};
      
   filteredOptions;
   filteredProduct;
@@ -69,7 +70,7 @@ export class InvoiceHeaderComponent implements OnInit {
   filterClients(){
        //select value
        this.formGroup.get('client').valueChanges.subscribe(response => {
-        console.log('data is ', response);
+        //console.log('data is ', response);
         
         this.dtoInvoiceRegister.Idclient = response.id;
         
@@ -78,13 +79,16 @@ export class InvoiceHeaderComponent implements OnInit {
         this.phone.setValue(response.phone);
   
         this.filterData(response);
+        this.objClientLastSelected = response;        
+        
+        
       })  
   }
 
   //filter and and product to detail
   filterProducts(){
     this.formGroup.get('product').valueChanges.subscribe(response => {      
-      if(response!='')      
+      if(response!='' && response.value!=undefined)       
       {
         this.dtoInvoiceRegister.ProductsInvoice.push(response);
       }
@@ -104,7 +108,7 @@ export class InvoiceHeaderComponent implements OnInit {
 
   filterInputProduct(enteredData){
     this.filteredProduct = this.productList.filter(item => {      
-      let  external = item['productname'].indexOf(enteredData) > -1      
+      let  external = item['productname'].toLowerCase().indexOf(enteredData) > -1      
       return external;
     })    
   }
@@ -117,7 +121,13 @@ export class InvoiceHeaderComponent implements OnInit {
       
   }
 
-  
+  displayClient(clientlist:any):string{
+    return clientlist.document;
+  }
+
+  displayProduct(productitem:any):string{
+    return productitem.productname;
+  }
 
   saveInvoice():any{
     this._getInvoiceUseCase.saveNew(this.dtoInvoiceRegister)   

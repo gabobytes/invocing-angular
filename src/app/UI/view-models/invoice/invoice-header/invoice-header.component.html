@@ -3,40 +3,41 @@
     <div class="card-header">
         Registrar Venta
     </div>
-    <div class="card-body">
-     
-            <mat-form-field class="example-full-width" appearance="fill">
-              <mat-label>Number</mat-label>
-              <input formControlName="client" 
-                     placeholder="Pick one"
-                     aria-label="Number"
-                     matInput  type="text"                     
-                     [matAutocomplete]="auto"
-                     class="form-control"
-                     >
-              <mat-autocomplete #auto="matAutocomplete">
-                <mat-option  *ngFor="let clientlist of filteredOptions" [value]="clientlist">
-                  {{ clientlist.document }} 
-                </mat-option>
-              </mat-autocomplete>
-            </mat-form-field>
-          
-    </div>
-
-    <div>
-      <div class="mb-12">
-        <label  for="exampleFormControlInput1" class="form-label">Documento</label>
-        <input readonly formControlName="document" type="text" class="form-control" id="exampleFormControlInput1" >
-      </div>
-      <div class="mb-12">
-        <label for="exampleFormControlInput1" class="form-label">Nombre</label>
-        <input readonly formControlName="fullname" type="text" class="form-control" id="exampleFormControlInput1" >
-      </div>
-      <div class="mb-12">
-        <label for="exampleFormControlInput1" class="form-label">Teléfono</label>
-        <input readonly formControlName="phone" type="text" class="form-control" id="exampleFormControlInput1" >
-      </div>      
-    </div>     
+    <div class="card-body">     
+      <div class="row">
+        <div class="col-md-6">
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Documento cliente</mat-label>
+            <input formControlName="client" 
+                   placeholder="Seleccione uno"
+                   aria-label="Documento"
+                   matInput  type="text"                     
+                   [matAutocomplete]="auto"
+                   class="form-control"     
+                   >
+            <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayClient">
+              <mat-option  *ngFor="let clientlist of filteredOptions " [value]="clientlist">
+                {{ clientlist.document }} 
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6">
+          <div class="mb-12">
+            <label  for="exampleFormControlInput1" class="form-label">Documento</label>
+            <input readonly formControlName="document" type="text" class="form-control" id="exampleFormControlInput1" >
+          </div>
+          <div class="mb-12">
+            <label for="exampleFormControlInput1" class="form-label">Nombre</label>
+            <input readonly formControlName="fullname" type="text" class="form-control" id="exampleFormControlInput1" >
+          </div>
+          <div class="mb-12">
+            <label for="exampleFormControlInput1" class="form-label">Teléfono</label>
+            <input readonly formControlName="phone" type="text" class="form-control" id="exampleFormControlInput1" >
+          </div>    
+        </div>
+      </div>          
+    </div>      
 </div>
 
 
@@ -50,8 +51,8 @@
            [matAutocomplete]="auto2"
            class="form-control"
            >
-    <mat-autocomplete #auto2="matAutocomplete">
-      <mat-option  *ngFor="let productitem of filteredProduct" [value]="productitem">
+    <mat-autocomplete #auto2="matAutocomplete" [displayWith]="displayProduct">
+      <mat-option  *ngFor="let productitem of filteredProduct" [value]="productitem"  >
         {{ productitem.productname }} 
       </mat-option>
     </mat-autocomplete>
