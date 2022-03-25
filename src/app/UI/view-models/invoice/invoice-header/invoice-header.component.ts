@@ -19,10 +19,13 @@ export class InvoiceHeaderComponent implements OnInit {
   productList: any[] = [];
   formGroup:FormGroup;
   dtoInvoiceRegister = new InvoiceRegister();
-  objClientLastSelected = {};
+  
      
   filteredOptions;
   filteredProduct;
+
+  totalByItem:number;
+  totalByInvoice:number = 0;
 
   constructor(private _getClientUseCase:ClientUseCases, 
     private _getProductUseCase:ProductUseCases,
@@ -70,16 +73,13 @@ export class InvoiceHeaderComponent implements OnInit {
   filterClients(){
        //select value
        this.formGroup.get('client').valueChanges.subscribe(response => {
-        //console.log('data is ', response);
         
         this.dtoInvoiceRegister.Idclient = response.id;
         
         this.document.setValue(response.document);
         this.fullname.setValue(response.firstname+' '+response.lastname);
         this.phone.setValue(response.phone);
-  
-        this.filterData(response);
-        this.objClientLastSelected = response;        
+        this.filterData(response);               
         
         
       })  
@@ -88,9 +88,10 @@ export class InvoiceHeaderComponent implements OnInit {
   //filter and and product to detail
   filterProducts(){
     this.formGroup.get('product').valueChanges.subscribe(response => {      
+      
       if(response!='' && response.value!=undefined)       
-      {
-        this.dtoInvoiceRegister.ProductsInvoice.push(response);
+      { 
+        this.dtoInvoiceRegister.ProductsInvoice.push(response);        
       }
       this.filterInputProduct(response);      
     }) 
@@ -129,6 +130,22 @@ export class InvoiceHeaderComponent implements OnInit {
     return productitem.productname;
   }
 
+  deleteProduct(value:any,iControl:any){  
+    this.totalByInvoice -= value;
+    this.dtoInvoiceRegister.ProductsInvoice.splice(iControl,1);  
+  }
+
+  calculateTotalByItem(data){
+      let cantidad:number = data.value;
+      this.product.value.total = 0;
+      this.product.value.total  =  cantidad * this.product.value.value;
+      this.calculcateTotalByInvoice(this.product.value.total )      ;
+  }
+
+  calculcateTotalByInvoice(value){
+    return this.totalByInvoice += value;
+  }
+
   saveInvoice():any{
     this._getInvoiceUseCase.saveNew(this.dtoInvoiceRegister)   
     .subscribe({
@@ -143,9 +160,11 @@ export class InvoiceHeaderComponent implements OnInit {
 
   get id() { return this.formGroup.get('id'); }
   get document() { return this.formGroup.get('document'); }
-  get fullname() { return this.formGroup.get('fullname'); }
+  get fullname() {  return this.formGroup.get('fullname'); }
   get phone() { return this.formGroup.get('phone'); }
   get client(){return this.formGroup.get('client');}
   get product(){return this.formGroup.get('product');}
-
+ 
+  
+  
 }

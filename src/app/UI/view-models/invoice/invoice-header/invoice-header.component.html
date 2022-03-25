@@ -62,9 +62,7 @@
 
 
 
-<div class="btn-group" role="group" aria-label="">
-  <button type="submit" class="btn btn-success">Registrar</button>  
-</div>
+
 
 </form>
 
@@ -75,15 +73,29 @@
       <th scope="col">Valor Unitario</th>
       <th scope="col">Cantidad</th>
       <th scope="col">Total</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
     <tr  *ngFor="let product of dtoInvoiceRegister.ProductsInvoice let iControl=index">
       <td>{{ product.productname }}</td>
       <td>{{ product.value }}</td>
-      <td><input required type="text" value="{{ product.quantity }}"  [(ngModel)]="product.quantity" class="form-control" name=""  id="" aria-describedby="helpId"></td>
-      <td>{{ product.value * 1 }}</td>
+      <td><input required type="text" value="{{ product.quantity }}" (keyup)="calculateTotalByItem($event.target)"  [(ngModel)]="product.quantity" class="form-control" name=""  id="" aria-describedby="helpId"></td>
+      <td>
+        <input value="{{product.total}}" readonly type="text" class="form-control" name=""  id="" aria-describedby="helpId">
+     </td>
+     <td>
+      <a  class="btn btn-danger" (click)="deleteProduct(product.total,iControl)" role="button">Eliminar</a>
+     </td>
     </tr>   
   </tbody>
 </table>
+
+<div>
+<p>Total de la Factura: {{ totalByInvoice }}</p>
+</div>
 <!-- {{ dtoInvoiceRegister | json }}-->
+
+<div class="btn-group" role="group" aria-label="">
+  <button type="submit" class="btn btn-success"  (click)="saveInvoice()">Registrar</button>  
+</div>
